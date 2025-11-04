@@ -1,0 +1,5 @@
+{
+  "name": "Horse Racing Tip Aggregator",
+  "description": "Upload images of horse racing tip sheets to scan and aggregate tips from various publications. Quickly see which horses are the most popular picks for each race.",
+  "requestFramePermissions": []
+}

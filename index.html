@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>thetipanalyser.com</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Color Palette */
+        --primary-navy: #1e3a5f;
+        --accent-blue: #4285f4;
+        --background: #f8f9fa;
+        --foreground: #1e3a5f;
+        --card-background: #ffffff;
+        --muted-gray: #f1f3f4;
+        --input-background: #ffffff;
+        --destructive-red: #e94e37;
+        --border-color: rgba(30, 58, 95, 0.1);
+        --color-green: oklch(0.65 0.2 150);
+        --color-amber: oklch(0.8 0.15 95);
+        --color-purple: oklch(0.558 0.288 302.321);
+
+        /* Typography */
+        --font-family-primary: 'Montserrat', sans-serif;
+
+        /* Spacing */
+        --space-1: 0.25rem; /* 4px */
+        --space-2: 0.5rem;  /* 8px */
+        --space-3: 0.75rem; /* 12px */
+        --space-4: 1rem;    /* 16px */
+        --space-6: 1.5rem;  /* 24px */
+        --space-8: 2rem;    /* 32px */
+
+        /* Borders */
+        --border-radius-md: 8px;
+        --border-radius-xl: 16px;
+        --border-radius-2xl: 24px;
+
+        /* Shadows */
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.07), 0 8px 10px -6px rgb(0 0 0 / 0.07);
+      }
+
+      body {
+        font-family: var(--font-family-primary);
+        background-color: var(--background);
+        color: var(--foreground);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* Component Styles */
+      .card {
+        background-color: var(--card-background);
+        border-radius: var(--border-radius-2xl);
+        border: 1px solid var(--border-color);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-md);
+        transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .card:hover {
+        box-shadow: var(--shadow-lg);
+      }
+
+      .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--space-2);
+          font-weight: 600;
+          border-radius: var(--border-radius-md);
+          padding: var(--space-3) var(--space-6);
+          transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+          border: 1px solid transparent;
+          cursor: pointer;
+          font-size: 0.875rem; /* 14px */
+      }
+      .btn-lg {
+        padding: var(--space-4) var(--space-8);
+        font-size: 1rem;
+      }
+      .btn:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+      }
+
+      .btn-primary {
+          background-color: var(--primary-navy);
+          color: white;
+      }
+      .btn-primary:not(:disabled):hover {
+          background-color: #162b47;
+      }
+
+      .btn-secondary {
+          background-color: var(--accent-blue);
+          color: white;
+      }
+      .btn-secondary:not(:disabled):hover {
+          background-color: #3367d6;
+      }
+
+      .btn-outline {
+          background-color: transparent;
+          color: var(--primary-navy);
+          border-color: var(--border-color);
+      }
+      .btn-outline:not(:disabled):hover {
+          background-color: rgba(30, 58, 95, 0.05);
+      }
+      
+      .form-input {
+          width: 100%;
+          background-color: var(--input-background);
+          border: 1px solid var(--border-color);
+          border-radius: var(--border-radius-md);
+          padding: var(--space-2) var(--space-3);
+          color: var(--foreground);
+          transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+      }
+      .form-input:focus {
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+          border-color: var(--accent-blue);
+          box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.4);
+      }
+
+      /* Animations */
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .cell-highlight {
+        animation: cell-highlight-flash 2.5s ease-out;
+      }
+      @keyframes cell-highlight-flash {
+        0% { background-color: oklch(0.924 0.12 95.746 / 0.4); }
+        100% { background-color: transparent; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
